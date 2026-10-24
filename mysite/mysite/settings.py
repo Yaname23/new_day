@@ -29,11 +29,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-45*uxm7aol7v1bpdy5wof(gz1=k$bybvmhiy(pkft^vcxoktac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -67,6 +69,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -123,9 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static/'
-
+STATIC_URL = '/static/'
+#STATIC_ROOT = BASE_DIR / 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Теперь Django будет искать папку static прямо в корне проекта
+]
 # Настройки для медиафайлов (изображений)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

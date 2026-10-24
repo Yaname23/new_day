@@ -12,9 +12,27 @@
     <br/>
     <h3>И, дальше, я также понятия не имею, что написать, поэтому я добавила пару обзацев с рандомным lorem:</h3>
 
-    <div>
-        {% lorem 2 p random %}
+    <div class="news-widget">
+    <h2>Последние новости партнеров</h2>
+    <ul>
+        {% for news in news_list %}
+            <li>
+                <!-- Ссылка на первоисточник и заголовок -->
+                <a href="{{ news.link }}" target="_blank" rel="noopener noreferrer">
+                    {{ news.title }}
+                </a>
+
+                <!-- Дата публикации (если передается сайтом) -->
+                {% if news.published %}
+                    <span class="news-date">({{ news.published }})</span>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Не удалось загрузить новости. Пожалуйста, зайдите позже.</li>
+        {% endfor %}
+    </ul>
     </div>
+
 
 
 {% endblock %}
